@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState, useRef } from "react";
 import './App.css';
 
 function App() {
+
+
+  const [name, setName] = useState("");
+  const inputElement = useRef("");
+  console.log(inputElement)
+  const resetInput = () =>{
+    setName("");
+    inputElement.current.focus();
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input 
+      ref={inputElement}
+      name="name"
+      autoComplete="off"
+      type="text"
+      value={name}
+      onChange={(e)=> setName(e.target.value)}
+      />
+      <button onClick={resetInput}>Reset</button>
+    </div>
+    <div>My name is {name}</div>
     </div>
   );
 }
